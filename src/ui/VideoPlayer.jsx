@@ -1,18 +1,19 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { TimeService } from "../data/services/TimeService";
-
-const _selectedVideo = {
-  id: 2,
-  title: "Glowing Purple Grid Lines Tracking In",
-  duration: 6,
-  url:
-    "https://www.videvo.net/videvo_files/converted/2018_05/preview/180503_02_PurpleGrid.mp455771.webm",
-  cover:
-    "https://images.freeimages.com/images/large-previews/241/night-fog-1521028.jpg",
-};
+import { videoStore } from '../data/video/VideoContext'
+// const _selectedVideo = {
+//   id: 2,
+//   title: "Glowing Purple Grid Lines Tracking In",
+//   duration: 6,
+//   url:
+//     "https://www.videvo.net/videvo_files/converted/2018_05/preview/180503_02_PurpleGrid.mp455771.webm",
+//   cover:
+//     "https://images.freeimages.com/images/large-previews/241/night-fog-1521028.jpg",
+// };
 
 export default function VideoPlayer() {
-  const video = _selectedVideo;
+  const [videoState] = useContext(videoStore)
+  const video = videoState.selectedVideo;
   const videoRef = useRef();
   const progressTimer = useRef();
   const [isPlaying, setPlay] = useState(false);
